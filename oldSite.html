@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="oldStyle.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -26,32 +26,19 @@
     <path d="M -85.59,444.4 -85.59,890.6 489,895.6 C 489,895.6 436.8,745.3 382.5,690.8 258.1,565.8 57.98,629.2 -85.59,444.4 Z" pathdata:id="M -85.59,444.4 -85.59,890.6 546.9,895.6 C 546.9,895.6 517.4,695.4 339.9,593.4 187.7,505.9 57.98,629.2 -85.59,444.4 Z"></path>
 </svg>
 
-<div class="page">
-    <div class="noSelect" id="title"><h1>Guido Meo</h1><h2>Junior Game Designer</h2></div>
+<div class="noSelect" id="title" onclick="menu();"><h1>Guido Meo</h1><h2>Game Designer</h2></div>
+<div id="menu_page">
+    <div id="menu">
+        <div class="menu_button noSelect" onclick="goToPage('play');">Play</div>
+        <div class="menu_button noSelect" onclick="goToPage('artworks');">Artworks</div>
+        <div class="menu_button noSelect" onclick="goToPage('extra');">Extra contents</div>
+        <div class="menu_button noSelect" onclick="goToPage('credits');">Credits</div>
+        <div class="menu_button noSelect" onclick="goToPage('exit');">Exit</div>
+    </div>
+    <footer style="position: fixed; bottom: 0;"></footer>
+</div>
 
-    <section>
-        <div class="about_grid">
-            <div style="position: relative;"><figure><img style="border-radius: 50%" src="img/me.jpg"/></figure></div>
-            <div>
-
-Hi! I am a <span id="age"></span> years old guy from Italy.<br /><br />
-
-Since I was a child I have always loved to create and learn new tools to realize my ideas.<br />
-I remember that when I was very young I used to make things using anything I could find in my house. 
-Then at the age of 14, I approached videogames programming and I started discovering the endless possibilities that the digital medium could offer.
-This amazed me so much that brought me to learn more and more about digital art in general. <br />
-I really believe that videogames are the perfect manifestation of the freedom and creativity I always seek,  
-and I would love to explore this world as much as I can in my life.
-<br /><br />
-<a href="files/curriculum.pdf" target="_blank">Download CV</a>
-<br /><br />
-<a href="https://it.linkedin.com/in/guido-meo-9a30801a1" target="_blank">LinkedIn</a><br />
-<a href="https://www.instagram.com/guidomeo/" target="_blank">Instagram</a>
-
-            </div>
-        </div>
-    </section>
-
+<div id="play_page" class="page">
     <h3>Double</h3>
     <section>
         <div class="game_grid">
@@ -106,12 +93,130 @@ and I would love to explore this world as much as I can in my life.
             </div>
         </div>
     </section>
+
+    <h3>Round Pong</h3>
+    <section>
+        <div class="game_grid">
+            <div style="position: relative;">
+                <figure>
+                    <img src="img/roundpong/icon.png"/>
+                    <figcaption style="text-align: center;">RoundPong 2018</figcaption>
+                </figure>
+            </div>
+            <div>
+                A new take on the classic game Pong, in which the action takes place in a circle.<br />
+                It's a small game done in a few days to practice experimenting with multiplayer, even so can be really funny to play with a friend.<br />
+                <br />
+                If you want to try it out you can download it
+                <a href="files/RoundPong.rar" target="_blank">here</a>.
+            </div>
+            <div style="position: relative;">
+                <img class="roundpong_slideshow adapt noSelect" src="img/roundpong/screen-0.jpg" />
+                <img class="roundpong_slideshow adapt noSelect" src="img/roundpong/screen-1.jpg" style="position: absolute;" />
+                <img class="roundpong_slideshow adapt noSelect" src="img/roundpong/screen-2.jpg" style="position: absolute;" />
+            </div>
+        </div>
+    </section>
+    <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
+    <footer></footer>
+</div>
+
+<div id="artworks_page" class="page">
+    <h3>Artworks</h3>
+    <section>
+    <div class="artworks_grid">
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/anim-1.gif"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/img-4.jpg"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/anim-4.gif"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/img-2.jpg"/></div>
+
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/img-1.jpg"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/anim-2.gif"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/img-0.jpg"/></div>
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/anim-3.gif"/></div>
+        
+        <div style="position: relative; display: inline-block;"><img src="img/artworks/anim-5.gif"/></div>
+    </div>
+    </section>
+    <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
+    <footer></footer>
+</div>
+
+<div id="extra_page" class="page">
+    <h3>AR</h3>
+    <section>
+        <div class="vr_grid">
+            <div>
+                In this section you can find some of my augmented reality works made with Spark AR.<br />
+                Follow the links to try them on Instagram.
+            </div>
+            <div style="position: relative;">
+                <figure>
+                    <img src="img/vr/occhioni.gif"/>
+                    <figcaption style="text-align: center;">This is an instagram filter I made just for fun. You can find it on my 
+                        <a href="https://www.instagram.com/guidomeo/" target="_blank">instagram page</a>.
+                    </figcaption>
+                </figure>
+            </div>
+            <div style="position: relative;">
+                <figure>
+                    <img src="img/vr/insettocane.gif"/>
+                    <figcaption style="text-align: center;">This is a filter I'am currently working on for 
+                        <a href="https://www.instagram.com/vittorioascolani/" target="_blank">Vittorio Ascolani</a>.
+                        It's a 3D version of is character <a href="https://www.instagram.com/vittorioascolani/" target="_blank">Insettocane</a>.
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
+    <footer></footer>
+</div>
+
+<div id="credits_page" class="page">
+    <h3>About me</h3>
+    <section>
+        <div class="about_grid">
+            <div style="position: relative;"><figure><img src="img/me.jpg"/></figure></div>
+            <div>
+
+Hi! I am a <span id="age"></span> years old guy from Italy.<br /><br />
+
+Since I was a child I have always loved to create and learn new tools to realize my ideas.<br />
+I remember that when I was very young I used to make things using anything I could find in my house. 
+Then at the age of 14, I approached videogames programming and I started discovering the endless possibilities that the digital medium could offer.
+This amazed me so much that brought me to learn more and more about digital art in general. <br />
+I really believe that videogames are the perfect manifestation of the freedom and creativity I always seek,  
+and I would love to explore this world as much as I can in my life.
+<br /><br />
+<a href="files/curriculum.pdf" target="_blank">Download CV</a>
+<br /><br />
+<a href="https://it.linkedin.com/in/guido-meo-9a30801a1" target="_blank">LinkedIn</a><br />
+<a href="https://www.instagram.com/guidomeo/" target="_blank">Instagram</a>
+
+            </div>
+        </div>
+    </section>
+    <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
+    <footer></footer>
+</div>
+
+<div id="exit_page" class="page">
+    <h3>Good bye</h3>
+    <section style="text-align: center;">
+        Thank you for visiting my page.<br /><br />
+        Here's some links to my personal profiles:<br /><br />
+        <a href="https://it.linkedin.com/in/guido-meo-9a30801a1" target="_blank">LinkedIn</a><br />
+        <a href="https://www.instagram.com/guidomeo/" target="_blank">Instagram</a>
+    </section>
+    <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
     <footer></footer>
 </div>
 
 <script src="js/anime.min.js"></script>
 <script src="js/background.js"></script>
-<script src="js/script.js"></script>
+<script src="js/slideshow.js"></script>
+<script src="js/oldScript.js"></script>
 
 </body>
 </html>

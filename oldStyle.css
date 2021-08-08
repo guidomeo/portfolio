@@ -5,9 +5,10 @@
     --button-hover: #ffd344;
     --text: rgb(255, 255, 255);
 
-    --h1: 9vh;
-    --h2: 5vh;
-    --h3: 3em;
+    --max-h1: 9vh;
+    --max-h2: 6vh;
+    --min-h1: 6vh;
+    --min-h2: 4vh;
 }
 
 * {
@@ -28,21 +29,21 @@
 #title {
     top: 0;
     text-align: center;
-    margin-top: 0vh;
+    margin-top: 7vh;
     transition: 1.5s;
     cursor: default;
 }
 
 h1 {
     color: white;
-    font-size: var(--h1);
+    font-size: var(--max-h1);
     display: block;
     white-space: nowrap;
     transition: 1.5s;
 }
 
 h2 {
-    font-size: var(--h2);
+    font-size: var(--max-h2);
     color: var(--special);
     display: block;
     white-space: nowrap;
@@ -51,7 +52,7 @@ h2 {
   
 
 h3 {
-    font-size: var(--h3);
+    font-size: 3em;
     color: var(--special);
     display: block;
     white-space: nowrap;
@@ -60,24 +61,13 @@ h3 {
 }
 
 section {
+    width: 75%;
     margin: 5vh auto 5vh auto;
-    padding: 4vh 15% 4vh 15%;
+    padding: 4vh;
     font-size: 1.2em;
     text-align: left;
     color: var(--text);
     background-color: rgba(0, 0, 0, 0);
-}
-
-@media only screen and (max-width: 1280px) {
-    section {
-        padding: 4vh 5% 4vh 5%;
-    }
-}
-
-@media only screen and (max-width: 736px) {
-    section {
-        padding: 4vh 5% 4vh 5%;
-    }
 }
 
 .game_grid {
@@ -86,7 +76,7 @@ section {
     grid-gap: 4vh;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 980px) {
     .game_grid {
         grid-template-columns: 0.4fr 1fr 0.8fr;
     }
@@ -105,7 +95,7 @@ section {
     grid-gap: 4vh;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 980px) {
     .vr_grid {
         grid-template-columns: 1fr 0.5fr 0.5fr;
     }
@@ -120,11 +110,11 @@ section {
 
 .about_grid {
     display: grid;
-    grid-template-columns: 0.2fr 1fr;
+    grid-template-columns: 0.4fr 1fr;
     grid-gap: 4vh;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 980px) {
     .about_grid {
         grid-template-columns: 0.5fr 1fr;
     }
@@ -187,7 +177,7 @@ img {
 
 body {
     font-family: Muli;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 #menu_page {
@@ -202,9 +192,9 @@ body {
     position: absolute;
     text-align: center;
     width: 100%;
-    margin-top: 5vh;
+    margin-top: 10vh;
     transition: 0.5s;
-    display: block;
+    display: none;
 }
 
 #menu {
