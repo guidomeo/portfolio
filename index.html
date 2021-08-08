@@ -26,19 +26,88 @@
     <path d="M -85.59,444.4 -85.59,890.6 489,895.6 C 489,895.6 436.8,745.3 382.5,690.8 258.1,565.8 57.98,629.2 -85.59,444.4 Z" pathdata:id="M -85.59,444.4 -85.59,890.6 546.9,895.6 C 546.9,895.6 517.4,695.4 339.9,593.4 187.7,505.9 57.98,629.2 -85.59,444.4 Z"></path>
 </svg>
 
-<div class="noSelect" id="title" onclick="menu();"><h1>Guido Meo</h1><h2>Game Designer</h2></div>
-<div id="menu_page">
-    <div id="menu">
-        <div class="menu_button noSelect" onclick="goToPage('play');">Play</div>
-        <div class="menu_button noSelect" onclick="goToPage('artworks');">Artworks</div>
-        <div class="menu_button noSelect" onclick="goToPage('extra');">Extra contents</div>
-        <div class="menu_button noSelect" onclick="goToPage('credits');">Credits</div>
-        <div class="menu_button noSelect" onclick="goToPage('exit');">Exit</div>
-    </div>
-    <footer style="position: fixed; bottom: 0;"></footer>
+<div id="play_page" class="page">
+    <div class="noSelect" id="title"><h1>Guido Meo</h1><h2>Junior Game Designer</h2></div>
+    <section style="background-color: rgba(0, 0, 0, 1)">
+        <div class="about_grid">
+            <div style="position: relative;"><figure><img style="border-radius: 50vh;" src="img/me.jpg"/></figure></div>
+            <div>
+
+Hi! I am a <span id="age"></span> years old guy from Italy.<br /><br />
+
+Since I was a child I have always loved to create and learn new tools to realize my ideas.<br />
+I remember that when I was very young I used to make things using anything I could find in my house. 
+Then at the age of 14, I approached videogames programming and I started discovering the endless possibilities that the digital medium could offer.
+This amazed me so much that brought me to learn more and more about digital art in general. <br />
+I really believe that videogames are the perfect manifestation of the freedom and creativity I always seek,  
+and I would love to explore this world as much as I can in my life.
+<br /><br />
+<a href="files/curriculum.pdf" target="_blank">Download CV</a>
+<br /><br />
+<a href="https://www.linkedin.com/in/guido-meo/" target="_blank">LinkedIn</a><br />
+<a href="https://www.instagram.com/guidomeo/" target="_blank">Instagram</a>
+
+            </div>
+        </div>
+    </section>
+    <h3>Double</h3>
+    <section>
+        <div class="game_grid">
+            <div style="position: relative;">
+                <figure>
+                    <img src="img/double/icon.png"/>
+                    <figcaption style="text-align: center;">Double 2015</figcaption>
+                </figure>
+            </div>
+            <div>
+                A minimalist android game in which you need to avoid enemies in both screens at once.<br />
+                There are a lot of different and unique achievements which allow you to unlock new skins.<br />
+                <br />
+                The game is no longer avaible on the Google Play store, but you can download the APK
+                <a href="files/Double.apk" target="_blank">here</a>.<br />
+                <br />
+                <br />
+                Music: <a href="https://www.youtube.com/channel/UC_J2AwBGGqFEgP0ngX6eU3A" target="_blank">Pierfrancesco Palma</a>
+            </div>
+            <div style="position: relative;">
+                <img class="double_slideshow adapt noSelect" src="img/double/screen-0.jpg" />
+                <img class="double_slideshow adapt noSelect" src="img/double/screen-1.jpg" style="position: absolute;" />
+                <img class="double_slideshow adapt noSelect" src="img/double/screen-2.jpg" style="position: absolute;" />
+                <img class="double_slideshow adapt noSelect" src="img/double/screen-3.jpg" style="position: absolute;" />
+                <img class="double_slideshow adapt noSelect" src="img/double/screen-4.jpg" style="position: absolute;" />
+            </div>
+        </div>
+    </section>
+
+    <h3>Rotate</h3>
+    <section>
+        <div class="game_grid">
+            <div style="position: relative;">
+                <figure>
+                    <img src="img/rotate/icon.png"/>
+                    <figcaption style="text-align: center;">Rotate 2013</figcaption>
+                </figure>
+            </div>
+            <div>
+                Rotate is a puzzle game about perspective.
+                Your goal is to get the ball to the end of the level, but you are not restricted to a single plane and you explore the level from different angles.<br />
+                <br />
+                The game can be found <a href="https://www.indiexpo.net/en/games/rotate" target="_blank">here</a>.<br/>
+                <br />
+                You can also try a tech demo of a 3d version of this game that I am currently working on
+                <a href="files/Rotate3D/" target="_blank">here</a>.
+            </div>
+            <div style="position: relative;">
+                <img class="rotate_slideshow adapt noSelect" src="img/rotate/screen-0.png" />
+                <img class="rotate_slideshow adapt noSelect" src="img/rotate/screen-1.png" style="position: absolute;"  />
+                <img class="rotate_slideshow adapt noSelect" src="img/rotate/screen-2.png" style="position: absolute;" />
+            </div>
+        </div>
+    </section>
+    <footer></footer>
 </div>
 
-<div id="play_page" class="page">
+<!-- <div id="play_page" class="page">
     <h3>Double</h3>
     <section>
         <div class="game_grid">
@@ -211,7 +280,7 @@ and I would love to explore this world as much as I can in my life.
     </section>
     <div class="back_to_menu_button" onclick="menu();">Back to menu</div>
     <footer></footer>
-</div>
+</div> -->
 
 <script src="js/anime.min.js"></script>
 <script src="js/background.js"></script>

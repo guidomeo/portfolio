@@ -1,4 +1,4 @@
-const audio_page = new Audio();
+/*const audio_page = new Audio();
 audio_page.src = "audio/page.mp3";
 audio_page.preload = 'auto';
 const audio_menu = new Audio();
@@ -64,10 +64,6 @@ function menu() {
 	document.getElementsByTagName("body")[0].style.overflowY = 'hidden';
 	document.body.scrollTop = 0; // For Safari
 	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
-	/*const footer = document.getElementsByTagName("footer")[0];
-	footer.style.visibility = 'visible';
-	footer.style.opacity = 1;*/
 }
 
 function hideMenu() {
@@ -87,10 +83,6 @@ function hideMenu() {
 	h2.style.opacity = 0;
 
 	document.getElementsByTagName("body")[0].style.overflowY = 'scroll';
-
-	/*const footer = document.getElementsByTagName("footer")[0];
-	footer.style.visibility = 'hidden';
-	footer.style.opacity = 0;*/
 }
 
 window.onhashchange = function() {
@@ -114,4 +106,4 @@ if (str != "") {
 
 new Slideshow('double_slideshow', 3500);
 new Slideshow('rotate_slideshow', 3500);
-new Slideshow('roundpong_slideshow', 3500);
+new Slideshow('roundpong_slideshow', 3500);*/
