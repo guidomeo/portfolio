@@ -11,3 +11,7 @@ function getAge(dateString) {
 
 const age = document.getElementById('age');
 age.innerHTML = getAge("03/31/1996");
+
+
+new Slideshow('rotate_slideshow', 2500);
+new Slideshow('roundpong_slideshow', 2500);
