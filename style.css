@@ -68,8 +68,8 @@ h3::after {
 }
 
 section {
-    margin: 0vh auto 0vh auto;
-    padding: 0vh 15% 0vh 15%;
+    margin: 0vh auto 8vh auto;
+    padding: 0vh 15% 8vh 15%;
     font-size: 1.2em;
     text-align: left;
     color: var(--text);
@@ -123,6 +123,14 @@ section {
     grid-template-columns: 1fr 0.7fr;
     grid-gap: 8vh;
 }
+    
+.game_grid_right div:nth-child(1){
+    order:2;
+  }
+ 
+.game_grid_right p:nth-child(2){
+    order:1;
+  }
 
 @media only screen and (max-width: 1280px) {
     .game_grid_right {
@@ -136,12 +144,12 @@ section {
         grid-template-rows: auto auto;
     }
 
-    .game_grid_right p:nth-child(1){
-        order:2;
+    .game_grid_right div:nth-child(1){
+        order:1;
       }
      
-    .game_grid_right div:nth-child(2){
-        order:1;
+    .game_grid_right p:nth-child(2){
+        order:2;
       }
 }
 
@@ -164,7 +172,7 @@ section {
     }
 }
 
-img {
+img, .image {
     position: relative;
     top: 0;
     left: 0;
@@ -217,6 +225,11 @@ p {
     text-justify: inter-word;
 }
 
+figcaption {
+    text-align: center;
+    margin-top: 1vh;
+}
+
 footer {
     color: var(--text);
 
@@ -236,6 +249,13 @@ footer {
     transition-timing-function: linear;*/
     
     background-color: black;
+}
+
+.game_section1 {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.game_section2 {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .scene {
