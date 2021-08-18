@@ -12,7 +12,7 @@
     --b-color: #e5486a;
     --border: #e5486a;
 
-    --normal: 1.2em;
+    --normal: 1em;
 
     --h1: 9vh;
     --h2: 5vh;
@@ -113,7 +113,7 @@ h3::after {
 
 section {
     margin: 0vh auto 0vh auto;
-    padding: 0vh 15% 8vh 15%;
+    padding: 0vh 10% 8vh 10%;
     font-size: var(--normal);
     text-align: left;
     color: var(--text);
@@ -122,6 +122,18 @@ section {
 
     text-shadow:
     0 0 2px black;
+}
+
+@media only screen and (max-width: 1280px) {
+    section {
+        padding: 4vh 5% 4vh 5%;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    section {
+        padding: 4vh 5% 4vh 5%;
+    }
 }
 
 table{
@@ -141,18 +153,6 @@ p {
 #about_section {
     background-color: black;
     padding: 4vh 15% 4vh 15%;
-}
-
-@media only screen and (max-width: 1280px) {
-    section {
-        padding: 4vh 5% 4vh 5%;
-    }
-}
-
-@media only screen and (max-width: 736px) {
-    section {
-        padding: 4vh 5% 4vh 5%;
-    }
 }
 
 
