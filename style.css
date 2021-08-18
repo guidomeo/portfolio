@@ -1,14 +1,25 @@
 :root {
     --background: brown;
-    --special: #e54873;
     --button: #ff9531;
     --button-hover: #ffd344;
     --text: rgb(255, 255, 255);
+    --outline: rgb(0, 0, 0);
+    --b-outline-size: 2px;
+    --h-outline-size: 2px;
 
-    --max-h1: 9vh;
-    --max-h2: 6vh;
-    --min-h1: 6vh;
-    --min-h2: 4vh;
+
+    --special: #e5486a; /*#e54873;*/
+    --b-color: #e5486a;
+    --border: #e5486a;
+
+    --normal: 1em;
+
+    --h1: 9vh;
+    --h2: 5vh;
+    --h3: 3em;
+    --h3-min: 2em;
+
+    --littlefont: 0.8em;
 }
 
 * {
@@ -29,21 +40,23 @@
 #title {
     top: 0;
     text-align: center;
-    margin-top: 7vh;
+    margin-bottom: 8vh;
     transition: 1.5s;
     cursor: default;
 }
 
 h1 {
+    font-family: 'Mulish', sans-serif;
     color: white;
-    font-size: var(--max-h1);
+    font-size: var(--h1);
     display: block;
     white-space: nowrap;
     transition: 1.5s;
 }
 
 h2 {
-    font-size: var(--max-h2);
+    font-family: 'Mulish', sans-serif;
+    font-size: var(--h2);
     color: var(--special);
     display: block;
     white-space: nowrap;
@@ -52,211 +65,308 @@ h2 {
   
 
 h3 {
-    font-size: 3em;
+    font-family: 'Mulish', sans-serif;
+    font-size: var(--h3);
     color: var(--special);
     display: block;
     white-space: nowrap;
     transition: 1.5s;
-    background-color: rgba(50, 50, 50, 0.5);
+    padding: 5vh 0 5vh 0;
+    /*background-color: rgba(50, 50, 50, 0.5);*/
+}
+
+h1,h2,h3 {
+    text-shadow:
+    calc(-1 * var(--h-outline-size)) calc(-1 * var(--h-outline-size)) var(--outline),
+    calc(-1 * var(--h-outline-size)) calc(+1 * var(--h-outline-size)) var(--outline),
+    calc(+1 * var(--h-outline-size)) calc(-1 * var(--h-outline-size)) var(--outline),
+    calc(+1 * var(--h-outline-size)) calc(+1 * var(--h-outline-size)) var(--outline);
+}
+
+b {
+    font-family: 'Mulish', sans-serif;
+    color: var(--b-color);
+    text-shadow:
+    calc(-1 * var(--b-outline-size)) calc(-1 * var(--b-outline-size)) var(--outline),
+    calc(-1 * var(--b-outline-size)) calc(+1 * var(--b-outline-size)) var(--outline),
+    calc(+1 * var(--b-outline-size)) calc(-1 * var(--b-outline-size)) var(--outline),
+    calc(+1 * var(--b-outline-size)) calc(+1 * var(--b-outline-size)) var(--outline);
+}
+
+.littlefont {
+    font-size: var(--littlefont);
+    padding: 0.5em 0 0.5em 0;
+    display: inline-block;
+}
+
+@media only screen and (max-width: 1280px) {
+    h3 {
+        font-size: var(--h3-min);
+    }
+}
+h3::before {
+    content: "- ";
+}
+h3::after {
+    content: " -";
 }
 
 section {
-    width: 75%;
-    margin: 5vh auto 5vh auto;
-    padding: 4vh;
-    font-size: 1.2em;
+    margin: 0vh auto 0vh auto;
+    padding: 0vh 10% 8vh 10%;
+    font-size: var(--normal);
     text-align: left;
     color: var(--text);
-    background-color: rgba(0, 0, 0, 0);
+    line-height: 1.5;
+    /*background-color: black;*/
+
+    text-shadow:
+    0 0 2px black;
 }
 
-.game_grid {
-    display: grid;
-    grid-template-columns: 0.4fr 1fr 0.4fr;
-    grid-gap: 4vh;
-}
-
-@media only screen and (max-width: 980px) {
-    .game_grid {
-        grid-template-columns: 0.4fr 1fr 0.8fr;
+@media only screen and (max-width: 1280px) {
+    section {
+        padding: 4vh 5% 4vh 5%;
     }
 }
 
 @media only screen and (max-width: 736px) {
-    .game_grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 80vw;
+    section {
+        padding: 4vh 5% 4vh 5%;
     }
 }
 
-.vr_grid {
-    display: grid;
-    grid-template-columns: 1fr 0.3fr 0.3fr;
-    grid-gap: 4vh;
+table{
+    display:inline-table;
+    border-collapse: separate;
+    border-spacing: 1em 0.5em;
+}
+td:first-child {
+    font-size: var(--littlefont);
 }
 
-@media only screen and (max-width: 980px) {
-    .vr_grid {
-        grid-template-columns: 1fr 0.5fr 0.5fr;
+p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#about_section {
+    background-color: black;
+    padding: 4vh 15% 4vh 15%;
+}
+
+.phonescreens { /* ////////////////////// PHONE SCREENS ////////////////////// */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3vh;
+}
+
+.game_grid_left { /* ////////////////////// GAME GRID LEFT ////////////////////// */
+    display: grid;
+    grid-template-columns: 0.7fr 1fr;
+    gap: 8vh;
+}
+
+@media only screen and (max-width: 1280px) {
+    .game_grid_left {
+        grid-template-columns: 0.8fr 1fr;
     }
 }
 
 @media only screen and (max-width: 736px) {
-    .vr_grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-    }
-}
-
-.about_grid {
-    display: grid;
-    grid-template-columns: 0.4fr 1fr;
-    grid-gap: 4vh;
-}
-
-@media only screen and (max-width: 980px) {
-    .about_grid {
-        grid-template-columns: 0.5fr 1fr;
-    }
-}
-
-@media only screen and (max-width: 736px) {
-    .about_grid {
+    .game_grid_left {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
     }
 }
 
-img {
-    position: relative;
-    top: 0;
-    left: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    max-width: 100%;
-    border: 0.5vh solid rgb(65, 65, 65);
-    border-radius: 1vh;
-    box-shadow: 0 0 0.1vh 0.1vh black;
-    /*padding: 0.5vh;*/
+.game_grid_right { /* ////////////////////// GAME GRID RIGHT ////////////////////// */
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    gap: 8vh;
+}
+    
+.game_grid_right div:nth-child(1){
+    order:2;
+  }
+ 
+.game_grid_right div:nth-child(2){
+    order:1;
+  }
+
+@media only screen and (max-width: 1280px) {
+    .game_grid_right {
+        grid-template-columns: 1fr 0.8fr;
+    }
 }
 
 @media only screen and (max-width: 736px) {
-
-    .adapt {
-        max-height: 100%;
+    .game_grid_right {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
     }
 
-    figure img {
-        max-width: 65%;
-    }
+    .game_grid_right div:nth-child(1){
+        order:1;
+      }
+     
+    .game_grid_right div:nth-child(2){
+        order:2;
+      }
 }
 
-.artworks_grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 4vh;
+.figure_div {
+    margin: 0 0 0 0;
 }
 
 @media only screen and (max-width: 1280px) {
-    .artworks_grid {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-@media only screen and (max-width: 980px) {
-    .artworks_grid {
-        grid-template-columns: 1fr 1fr;
+    .figure_div {
+        margin: 0 0 0 0;
     }
 }
 
 @media only screen and (max-width: 736px) {
-    .artworks_grid {
-        grid-template-columns: 1fr;
+    .figure_div {
+        margin: 0 15% 0 15%;
     }
+}
+
+.about_grid {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    gap: 8vh;
+}
+
+@media only screen and (max-width: 1280px) {
+    .about_grid {
+        grid-template-columns: 0.4fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .about_grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 30vh auto;
+    }
+}
+
+.old_games {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 0vh 15% 8vh 15%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4vh;
+}
+
+@media only screen and (max-width: 1280px) {
+    .old_games {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0vh 5% 8vh 5%;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .old_games {
+        padding: 0vh 5% 8vh 5%;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+}
+
+.vertical_game {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 25vh auto;
+    gap: 4vh;
+}
+
+@media only screen and (max-width: 736px) {
+    .vertical_game {
+        grid-template-rows: auto auto;
+    }
+}
+
+
+img, .image {
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    border: 0.2vh solid var(--border);
+    border-radius: 1.5vh;
+    box-shadow: 0 0 0.3vh 0.3vh var(--border);
+}
+
+figure {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
 }
 
 body {
     font-family: Muli;
-    overflow-y: hidden;
-}
-
-#menu_page {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    transition: 0.5s;
+    overflow-y: scroll;
 }
 
 .page {
     position: absolute;
     text-align: center;
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 5vh;
     transition: 0.5s;
-    display: none;
-}
-
-#menu {
-    text-align: center;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    white-space: nowrap;
+    display: block;
 }
 
 a {
-    text-decoration: none;
+    /*text-decoration: none;*/
     color: var(--button);
     transition: 0.1s;
     transition-timing-function: ease-out;
 }
+
 a:hover {
     color: var(--button-hover);
 }
 
-.menu_button {
-    font-size: 6vh;
-    padding: .3vh;
-    color: var(--button);
-    transition: color 0.1s, font-size 0.4s;
-    transition-timing-function: ease-out;
-}
-
-.menu_button:hover {
-    font-size: 9vh;
-    color: var(--button-hover);
-    cursor: pointer;
-}
-
-.back_to_menu_button {
-    font-size: 5vh;
-    margin-bottom: 5vh;
-    padding: .3vh;
-    color: var(--button);
-    white-space: nowrap;
-    display: inline-block;
-    transition: 0.1s;
-    transition-timing-function: ease-out;
-}
-
-.back_to_menu_button:hover {
-    color: var(--button-hover);
-    cursor: pointer;
+figcaption {
+    text-align: center;
+    margin-top: 1em;
 }
 
 footer {
-    margin-bottom: 3vh;
-    height: 6vh;
+    color: var(--text);
 
-    width: 100%;
+    margin-bottom: 3vh;
+    height: 8vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*width: 100%;
     background: url(line.svg);
     background-repeat: repeat;
 
     transition: 0.5s;
-    transition-timing-function: linear;
+    transition-timing-function: linear;*/
+    
+    background-color: black;
+}
+
+.game_section1 {
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.game_section2 {
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .scene {
@@ -266,6 +376,7 @@ footer {
     width: 100%;
     height: 100vh;
     background: #000000;
+    filter: brightness(1.5);
 }
 
 .scene path:first-child {
