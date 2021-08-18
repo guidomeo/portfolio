@@ -155,14 +155,6 @@ p {
     padding: 4vh 15% 4vh 15%;
 }
 
-
-.description {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 1vh;
-}
-
 .phonescreens { /* ////////////////////// PHONE SCREENS ////////////////////// */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -242,7 +234,7 @@ p {
 .about_grid {
     display: grid;
     grid-template-columns: 0.2fr 1fr;
-    gap: 4vh;
+    gap: 8vh;
 }
 
 @media only screen and (max-width: 1280px) {
