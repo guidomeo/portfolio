@@ -155,9 +155,14 @@ p {
     padding: 4vh 15% 4vh 15%;
 }
 
-.phonescreens { /* ////////////////////// PHONE SCREENS ////////////////////// */
+.phonescreens3 { /* ////////////////////// PHONE SCREENS ////////////////////// */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 3vh;
+}
+.phonescreens2 { /* ////////////////////// PHONE SCREENS ////////////////////// */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 3vh;
 }
 
@@ -277,7 +282,7 @@ p {
 .vertical_game {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 25vh auto;
+    grid-template-rows: auto auto; /*grid-template-rows: 25vh auto;*/
     gap: 4vh;
 }
 
@@ -311,6 +316,7 @@ figure {
 body {
     font-family: Muli;
     overflow-y: scroll;
+    background-color: black;
 }
 
 .page {
@@ -376,7 +382,7 @@ footer {
     width: 100%;
     height: 100vh;
     background: #000000;
-    filter: brightness(1.5);
+    filter: brightness(3);
 }
 
 .scene path:first-child {
