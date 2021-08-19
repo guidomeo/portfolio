@@ -15,7 +15,7 @@
     --normal: 1em;
 
     --h1: 9vh;
-    --h2: 5vh;
+    --h2: 6vh;
     --h3: 3em;
     --h3-min: 2em;
 
@@ -316,7 +316,8 @@ figure {
 body {
     font-family: Muli;
     overflow-y: scroll;
-    background-color: black;
+    overflow-x: hidden;
+    /*background-color: black;*/
 }
 
 .page {
@@ -382,7 +383,7 @@ footer {
     width: 100%;
     height: 100vh;
     background: #141414;
-    filter: brightness(3);
+    filter: brightness(2);
 }
 
 .scene path:first-child {

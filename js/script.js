@@ -15,3 +15,9 @@ age.innerHTML = getAge("03/31/1996");
 
 new Slideshow('rotate_slideshow', 2500);
 new Slideshow('roundpong_slideshow', 2500);
+
+fitText(document.querySelector("h1"), 0.8);
+fitText(document.querySelector("h2"), 1.2);
+document.querySelectorAll("h3").forEach(element => {
+    fitText(element, 1.4);
+});
