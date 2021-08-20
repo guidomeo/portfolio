@@ -9,9 +9,9 @@ function getAge(dateString) {
     return age;
 }
 
-function openFullscreen(myVideo) {
-    var elem = myVideo;
-    console.log(elem);
+function openFullscreen(elem) {
+    //source.setAttribute('src', '');
+
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (elem.mozRequestFullScreen) { /* Firefox */
