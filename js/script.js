@@ -37,6 +37,7 @@ document.querySelectorAll("h3").forEach(element => {
 });
 
 document.querySelectorAll("video").forEach(element => {
+    element.play();
     element.addEventListener('click', function(e) {
         openFullscreen(element);
     }, false);

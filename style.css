@@ -365,15 +365,10 @@ footer {
     background-color: black;
 }
 
-.game_section1 {
+.game_section {
     margin-top: 6vh;
     margin-bottom: 6vh;
     background-color: rgba(0, 0, 0, 0.3);
-}
-.game_section2 {
-    margin-top: 6vh;
-    margin-bottom: 6vh;
-    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .scene {
