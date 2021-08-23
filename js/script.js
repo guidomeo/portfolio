@@ -36,8 +36,29 @@ document.querySelectorAll("h3").forEach(element => {
     fitText(element, 1.4);
 });
 
+let options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5
+
+};
+let callback = (entries, observer) => {
+  entries.forEach(entry => {
+    //if (entry.target.nodeName == "VIDEO") {
+      if (entry.isIntersecting) {
+        entry.target.play();
+      }else{
+        entry.target.pause();
+      }
+    //}
+  })
+}
+
 document.querySelectorAll("video").forEach(element => {
-    element.play();
+    //element.play();
+    let observer = new IntersectionObserver(callback, options);
+    observer.observe(element);
+
     element.addEventListener('click', function(e) {
         openFullscreen(element);
     }, false);
