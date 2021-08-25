@@ -150,7 +150,7 @@ p {
     text-justify: inter-word;
 }
 
-#about_section {
+.black_section {
     background-color: black;
     padding: 4vh 15% 4vh 15%;
 }
@@ -304,7 +304,7 @@ input {
 	text-shadow:0px 1px 0px #2f6627;
     width:150px;
     height:2em;
-    padding:4px 4px 4px 22px;
+    padding:4px 4px 4px 28px;
     margin:4px 4px 4px 4px;
 }
 input:hover {
@@ -318,7 +318,6 @@ input:active {
 
 .linkedin_button{
     background:var(--button) url(img/symbols/linkedin.svg) no-repeat 8px 0;
-    padding:4px 4px 4px 22px;
 }
 
 .curriculum_button{
