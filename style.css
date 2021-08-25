@@ -292,8 +292,41 @@ p {
     }
 }
 
+input {
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:17px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+    width:150px;
+    height:2em;
+    padding:4px 4px 4px 22px;
+    margin:4px 4px 4px 4px;
+}
+input:hover {
+	background-color:var(--button-hover);
+}
+input:active {
+	position:relative;
+	top:1px;
+}
 
-img, .image {
+
+.linkedin_button{
+    background:var(--button) url(img/symbols/linkedin.svg) no-repeat 8px 0;
+    padding:4px 4px 4px 22px;
+}
+
+.curriculum_button{
+    background:var(--button) url(img/symbols/curriculum.svg) no-repeat 8px 0;
+}
+
+
+.image {
     position: relative;
     top: 0;
     left: 0;
