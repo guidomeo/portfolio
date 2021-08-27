@@ -11,6 +11,8 @@
 
 
     --special: #e54873;
+    --special-alpha: #e5487280;
+
     --b-color: #e54873;
     --border: #e54873;
 
@@ -346,6 +348,8 @@ body {
     font-family: Muli;
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: var(--black);
+    overflow: overlay;
 }
 
 .page {
@@ -427,4 +431,37 @@ footer {
 
 .scene path:nth-child(7) {
 	fill: #1d1d1d;
+}
+
+::-webkit-scrollbar {
+    left:-100px;
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-button {
+    width: 23px;
+    height: 23px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--special-alpha);
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--special);
+}
+::-webkit-scrollbar-thumb:active {
+    background: var(--special);
+}
+::-webkit-scrollbar-track {
+    background: #00000000;
+    border-radius: 50px;
+}
+/*::-webkit-scrollbar-track:hover {
+    background: #666666;
+}
+::-webkit-scrollbar-track:active {
+    background: #333333;
+}*/
+::-webkit-scrollbar-corner {
+    background: transparent;
 }

@@ -10,8 +10,13 @@ function getAge(dateString) {
 }
 
 function openFullscreen(elem) {
-    //source.setAttribute('src', '');
 
+   // Load full res video
+   let source = elem.firstChild
+   source.setAttribute('src', source.getAttribute('src').replace("lowRes/",""));
+   elem.load();
+
+    // Go full screen
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (elem.mozRequestFullScreen) { /* Firefox */
