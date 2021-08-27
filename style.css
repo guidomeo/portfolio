@@ -7,6 +7,8 @@
     --b-outline-size: 2px;
     --h-outline-size: 2px;
 
+    --black: rgb(20, 20, 20);
+
 
     --special: #e54873;
     --b-color: #e54873;
@@ -69,7 +71,6 @@ h3 {
     display: block;
     white-space: nowrap;
     padding: 5vh 0 5vh 0;
-    /*background-color: rgba(50, 50, 50, 0.5);*/
 }
 
 h1,h2,h3 {
@@ -115,7 +116,6 @@ section {
     text-align: left;
     color: var(--text);
     line-height: 1.5;
-    /*background-color: black;*/
 
     text-shadow:
     0 0 2px black;
@@ -148,7 +148,7 @@ p {
 }
 
 .black_section {
-    background-color: black;
+    background-color: var(--black);
     padding: 4vh 15% 4vh 15%;
 }
 
@@ -346,7 +346,6 @@ body {
     font-family: Muli;
     overflow-y: scroll;
     overflow-x: hidden;
-    /*background-color: black;*/
 }
 
 .page {
@@ -382,15 +381,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /*width: 100%;
-    background: url(line.svg);
-    background-repeat: repeat;
-
-    transition: 0.5s;
-    transition-timing-function: linear;*/
     
-    background-color: black;
+    background-color: var(--black);
 }
 
 .game_section {
