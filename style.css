@@ -83,6 +83,10 @@ h1,h2,h3 {
     calc(+1 * var(--h-outline-size)) calc(+1 * var(--h-outline-size)) var(--outline);
 }
 
+video {
+    width: 100%;
+}
+
 b {
     font-family: 'Mulish', sans-serif;
     color: var(--b-color);
