@@ -60,9 +60,9 @@ let callback = (entries, observer) => {
 }
 
 document.querySelectorAll("video").forEach(element => {
-    //element.play();
-    let observer = new IntersectionObserver(callback, options);
-    observer.observe(element);
+    element.play();
+    //let observer = new IntersectionObserver(callback, options);
+    //observer.observe(element);
 
     element.addEventListener('click', function(e) {
         openFullscreen(element);
