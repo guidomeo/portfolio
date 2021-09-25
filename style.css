@@ -518,20 +518,20 @@ footer {
     transition: 1s 0.4s;
   }
   #progress{
-    height:1px;
-    background:#fff;
+    height: 0.5em;
+    background: var(--special);
     position:absolute;
     width:0;
     top:50%;
     transition: 1s;
   }
   #progstat{
-    font-size:0.7em;
+    font-size: 2em;
     letter-spacing: 3px;
     position:absolute;
     top:50%;
-    margin-top:-40px;
+    margin-top:-2em;
     width:100%;
     text-align:center;
-    color:#fff;
+    color: var(--special);
   }
