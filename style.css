@@ -227,18 +227,6 @@ p {
     margin: 0 0 0 0;
 }
 
-@media only screen and (max-width: 1280px) {
-    .figure_div {
-        margin: 0 0 0 0;
-    }
-}
-
-@media only screen and (max-width: 736px) {
-    .figure_div {
-        margin: 0 0 0 0;
-    }
-}
-
 .about_grid {
     display: grid;
     grid-template-columns: 0.2fr 1fr;
@@ -342,7 +330,6 @@ input:active {
 figure {
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: column;
@@ -468,4 +455,54 @@ footer {
 }*/
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+.vr_grid {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 0.7fr;
+    grid-gap: 4vh;
+}
+
+@media only screen and (max-width: 980px) {
+    .vr_grid {
+        grid-template-columns: 1fr 0.7fr 0.7fr;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .vr_grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+}
+
+.vr_group {
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0vh 20% 8vh 20%;
+}
+
+@media only screen and (max-width: 1280px) {
+    .vr_group {
+        margin: 0vh 5% 8vh 5%;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .vr_group {
+        margin: 0vh 5% 8vh 5%;
+    }
+}
+
+.inner_image {
+    position: relative;
+    width:100%;
+}
+
+@media only screen and (max-width: 736px) {
+    .inner_image {
+        height: 50vh;
+        width: auto;
+    }
 }
