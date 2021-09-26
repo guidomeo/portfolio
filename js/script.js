@@ -67,8 +67,8 @@ document.querySelectorAll("video").forEach(element => {
     }, false);
 
     element.addEventListener('progress', function(){
-      var loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
-      console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+      //var loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
+      //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
     });
 });
 
@@ -83,7 +83,7 @@ function loadbar() {
   if(tot == 0) return doneLoading();
 
   function toLoadLoaded(src){
-    //console.log(src);
+    console.log(src);
     c += 1;
     var perc = ((100/tot*c) << 0) +"%";
     prog.style.width = perc;
