@@ -273,14 +273,8 @@ p {
 .vertical_game {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto; /*grid-template-rows: 25vh auto;*/
+    grid-template-rows: auto auto;
     gap: 4vh;
-}
-
-@media only screen and (max-width: 736px) {
-    .vertical_game {
-        grid-template-rows: auto auto;
-    }
 }
 
 input {
@@ -502,7 +496,7 @@ footer {
 
 @media only screen and (max-width: 736px) {
     .inner_image {
-        height: 50vh;
+        max-height: 50vh;
         width: auto;
     }
 }
