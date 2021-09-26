@@ -79,11 +79,14 @@ document.querySelectorAll("video").forEach(element => {
 
     currentPercentage -= loadedPercentage;
     loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
-    if (isNaN(loadedPercentage)) return;
+    if (isNaN(loadedPercentage)) {
+      console.log("ehi");
+      return;
+    }
 
     currentPercentage += loadedPercentage;
     updateLoading();
-    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+    console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
   });
   element.addEventListener('loadeddata', function() {
     currentPercentage -= loadedPercentage;
@@ -91,7 +94,7 @@ document.querySelectorAll("video").forEach(element => {
     currentPercentage += loadedPercentage;
     current++;
     updateLoading();
-    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+    console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
   });
 });
 
