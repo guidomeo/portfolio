@@ -59,18 +59,72 @@ let callback = (entries, observer) => {
   })
 }
 
+let total = 0;
+let current = 0;
+let currentPercentage = 0;
+
 document.querySelectorAll("video").forEach(element => {
-    element.play();
+  total++;
 
-    element.addEventListener('click', function(e) {
-        openFullscreen(element);
-    }, false);
+  element.play();
 
-    element.onprogress = function(e) {
-      var loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
-      console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
-    };
+  element.addEventListener('click', function(e) {
+      openFullscreen(element);
+  }, false);
+
+  let loadedPercentage = 0;
+
+  element.addEventListener('progress', function() {
+    if (element.buffered.length == 0) return;
+
+    currentPercentage -= loadedPercentage;
+    loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
+    if (isNaN(loadedPercentage)) return;
+
+    currentPercentage += loadedPercentage;
+    updateLoading();
+    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+  });
+  element.addEventListener('loadeddata', function() {
+    currentPercentage -= loadedPercentage;
+    loadedPercentage = 100;
+    currentPercentage += loadedPercentage;
+    current++;
+    updateLoading();
+    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+  });
 });
+
+/*document.querySelectorAll("img").forEach(element => {
+  total++;
+
+  element.addEventListener('load', function() {
+    current++;
+    updateLoading();
+    var loadedPercentage = 100;
+    currentPercentage += loadedPercentage;
+    console.log(loadedPercentage +"%   " + element.src);
+  });
+});*/
+
+function id(v){ return document.getElementById(v); }
+
+let ovrl = id("overlay");
+let prog = id("progress");
+let stat = id("progstat");
+
+function updateLoading() {
+  var perc = Math.round(currentPercentage / total) +"% " + current + "/" + total;
+  prog.style.width = perc;
+  stat.innerHTML = "Loading "+ perc;
+
+  if (current == total) {
+    ovrl.style.opacity = 0;
+    setTimeout(function(){ 
+      ovrl.style.display = "none";
+    }, 1200);
+  }
+}
 /*
 function id(v){ return document.getElementById(v); }
 function loadbar() {
