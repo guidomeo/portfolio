@@ -65,4 +65,40 @@ document.querySelectorAll("video").forEach(element => {
     element.addEventListener('click', function(e) {
         openFullscreen(element);
     }, false);
+
+    element.onprogress = function(e) {
+      var loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
+      console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+    };
 });
+/*
+function id(v){ return document.getElementById(v); }
+function loadbar() {
+  var ovrl = id("overlay"),
+      prog = id("progress"),
+      stat = id("progstat"),
+      toLoad = document.getElementsByTagName("img"),
+      c = 0,
+      tot = toLoad.length;
+  if(tot == 0) return doneLoading();
+
+  function toLoadLoaded(src){
+    console.log(src);
+    c += 1;
+    var perc = ((100/tot*c) << 0) +"%";
+    prog.style.width = perc;
+    stat.innerHTML = "Loading "+ perc;
+    if(c===tot) return doneLoading();
+  }
+  function doneLoading(){
+    ovrl.style.opacity = 0;
+    setTimeout(function(){ 
+      ovrl.style.display = "none";
+    }, 1200);
+  }
+  for(let i=0; i<tot; i++) {
+    toLoad[i].onload  = () => toLoadLoaded(toLoad[i].src);
+    toLoad[i].onerror = () => toLoadLoaded(toLoad[i].src);
+  }    
+}
+document.addEventListener('DOMContentLoaded', loadbar, false);*/
