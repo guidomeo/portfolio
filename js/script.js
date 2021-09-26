@@ -73,8 +73,10 @@ document.querySelectorAll("video").forEach(element => {
   }, false);
 
   let loadedPercentage = 0;
+  let completed = false;
 
   element.addEventListener('progress', function() {
+    if (completed) return;
     if (element.buffered.length == 0) return;
 
     currentPercentage -= loadedPercentage;
@@ -91,6 +93,7 @@ document.querySelectorAll("video").forEach(element => {
   element.addEventListener('loadeddata', function() {
     //console.log(element.readyState + " ___ " + element.firstChild.getAttribute('src'));
     if(element.readyState >= 3) {
+      completed = true;
       currentPercentage -= loadedPercentage;
       loadedPercentage = 100;
       currentPercentage += loadedPercentage;
