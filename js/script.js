@@ -119,7 +119,7 @@ let prog = id("progress");
 let stat = id("progstat");
 
 function updateLoading() {
-  var perc = Math.round(currentPercentage / total) +"% " + current + "/" + total;
+  var perc = Math.round(currentPercentage / total) + "%" /*+ " " + current + "/" + total*/;
   prog.style.width = perc;
   stat.innerHTML = "Loading "+ perc;
 
