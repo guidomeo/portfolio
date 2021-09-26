@@ -82,6 +82,7 @@ document.querySelectorAll("video").forEach(element => {
     currentPercentage -= loadedPercentage;
     loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
     if (isNaN(loadedPercentage)) {
+      loadedPercentage = 0;
       console.log("ehi");
       return;
     }
