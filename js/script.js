@@ -123,7 +123,7 @@ document.querySelectorAll("video").forEach(element => {
     currentPercentage += loadedPercentage;
     updateLoading();
     //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
-},100);
+},300);
 });
 
 function id(v){ return document.getElementById(v); }
@@ -138,6 +138,7 @@ function updateLoading() {
   stat.innerHTML = "Loading "+ perc;
 
   if (current == total) {
+    document.body.style.overflow = 'overlay';
     ovrl.style.opacity = 0;
     setTimeout(function(){ 
       ovrl.style.display = "none";
