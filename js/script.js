@@ -125,18 +125,6 @@ document.querySelectorAll("video").forEach(element => {
 },100);
 });
 
-/*document.querySelectorAll("img").forEach(element => {
-  total++;
-
-  element.addEventListener('load', function() {
-    current++;
-    updateLoading();
-    var loadedPercentage = 100;
-    currentPercentage += loadedPercentage;
-    console.log(loadedPercentage +"%   " + element.src);
-  });
-});*/
-
 function id(v){ return document.getElementById(v); }
 
 let ovrl = id("overlay");
@@ -144,7 +132,7 @@ let prog = id("progress");
 let stat = id("progstat");
 
 function updateLoading() {
-  var perc = Math.round(currentPercentage / total) + "%" /*+ " " + current + "/" + total*/;
+  var perc = Math.round(currentPercentage / total) + "%";
   prog.style.width = perc;
   stat.innerHTML = "Loading "+ perc;
 
@@ -155,34 +143,3 @@ function updateLoading() {
     }, 1200);
   }
 }
-/*
-function id(v){ return document.getElementById(v); }
-function loadbar() {
-  var ovrl = id("overlay"),
-      prog = id("progress"),
-      stat = id("progstat"),
-      toLoad = document.getElementsByTagName("img"),
-      c = 0,
-      tot = toLoad.length;
-  if(tot == 0) return doneLoading();
-
-  function toLoadLoaded(src){
-    console.log(src);
-    c += 1;
-    var perc = ((100/tot*c) << 0) +"%";
-    prog.style.width = perc;
-    stat.innerHTML = "Loading "+ perc;
-    if(c===tot) return doneLoading();
-  }
-  function doneLoading(){
-    ovrl.style.opacity = 0;
-    setTimeout(function(){ 
-      ovrl.style.display = "none";
-    }, 1200);
-  }
-  for(let i=0; i<tot; i++) {
-    toLoad[i].onload  = () => toLoadLoaded(toLoad[i].src);
-    toLoad[i].onerror = () => toLoadLoaded(toLoad[i].src);
-  }    
-}
-document.addEventListener('DOMContentLoaded', loadbar, false);*/
