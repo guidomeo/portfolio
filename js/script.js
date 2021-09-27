@@ -101,7 +101,7 @@ document.querySelectorAll("video").forEach(element => {
     updateLoading();
   });*/
   let interval = setInterval(()=>{
-    console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
+    //console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
     if(element.readyState >= 3){
       currentPercentage -= loadedPercentage;
       loadedPercentage = 100;
@@ -121,7 +121,7 @@ document.querySelectorAll("video").forEach(element => {
     }
     currentPercentage += loadedPercentage;
     updateLoading();
-    console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
 },100);
 });
 
