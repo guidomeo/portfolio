@@ -73,7 +73,8 @@ document.querySelectorAll("video").forEach(element => {
   }, false);
 
   let loadedPercentage = 0;
-  let completed = false;
+  
+  /*let completed = false;
 
   element.addEventListener('progress', function() {
     if (completed) return;
@@ -92,15 +93,36 @@ document.querySelectorAll("video").forEach(element => {
   });
   element.addEventListener('loadeddata', function() {
     console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
-    //if(element.readyState >= 3) {
-      completed = true;
+    completed = true;
+    currentPercentage -= loadedPercentage;
+    loadedPercentage = 100;
+    currentPercentage += loadedPercentage;
+    current++;
+    updateLoading();
+  });*/
+  let interval = setInterval(()=>{
+    console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
+    if(element.readyState >= 3){
       currentPercentage -= loadedPercentage;
       loadedPercentage = 100;
       currentPercentage += loadedPercentage;
       current++;
       updateLoading();
-    //}
-  });
+      clearInterval(interval);
+      return;
+    }  
+
+    if (element.buffered.length == 0) return;
+    currentPercentage -= loadedPercentage;
+    loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
+    if (isNaN(loadedPercentage)) {
+      loadedPercentage = 0;
+      return;
+    }
+    currentPercentage += loadedPercentage;
+    updateLoading();
+    console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
+},100);
 });
 
 /*document.querySelectorAll("img").forEach(element => {
