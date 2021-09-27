@@ -139,8 +139,9 @@ function updateLoading() {
 
   if (current == total) {
     document.body.style.overflow = 'visible';
+    document.body.style.overflow = 'overlay';
     ovrl.style.opacity = 0;
-    setTimeout(function(){ 
+    setTimeout(function(){
       ovrl.style.display = "none";
     }, 1200);
   }
