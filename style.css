@@ -331,10 +331,8 @@ figure {
 
 body {
     font-family: Muli;
-    overflow-y: scroll;
-    overflow-x: hidden;
     background-color: var(--black);
-    overflow: hidden;
+    overflow: overlay;
 }
 
 .page {
