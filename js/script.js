@@ -15,6 +15,7 @@ function openFullscreen(elem) {
    let source = elem.firstChild
    source.setAttribute('src', source.getAttribute('src').replace("lowRes/",""));
    elem.load();
+   elem.play();
 
     // Go full screen
     if (elem.requestFullscreen) {
