@@ -91,15 +91,15 @@ document.querySelectorAll("video").forEach(element => {
     console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
   });
   element.addEventListener('loadeddata', function() {
-    console.log(element.readyState + " ___ " + element.firstChild.getAttribute('src'));
-    if(element.readyState >= 3) {
+    console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
+    //if(element.readyState >= 3) {
       completed = true;
       currentPercentage -= loadedPercentage;
       loadedPercentage = 100;
       currentPercentage += loadedPercentage;
       current++;
       updateLoading();
-    }
+    //}
   });
 });
 
