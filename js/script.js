@@ -138,9 +138,7 @@ function updateLoading() {
   stat.innerHTML = "Loading "+ perc;
 
   if (current == total) {
-    document.getElementsByTagName("body")[0].style.overflow = 'overlay';
-    document.getElementsByTagName("body")[0].style.overflowX = 'overlay';
-    document.getElementsByTagName("body")[0].style.overflowY = 'overlay';
+    document.body.style.overflow = 'visible';
     ovrl.style.opacity = 0;
     setTimeout(function(){ 
       ovrl.style.display = "none";

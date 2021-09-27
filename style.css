@@ -332,7 +332,7 @@ figure {
 body {
     font-family: Muli;
     background-color: var(--black);
-    overflow: overlay;
+    overflow: hidden;
 }
 
 .page {
