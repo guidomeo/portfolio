@@ -1,3 +1,27 @@
+
+function goToPage(id) {
+
+    let numberOfPages = 3;
+
+    for(let i=1; i<=numberOfPages; i++)
+    {
+      let pageElem = document.getElementById("page"+i);
+      let buttonElems = document.querySelectorAll(".button"+i);
+
+      let visible = (i == id);
+
+      pageElem.style.display = visible ? "block" : "none";
+
+      buttonElems.forEach(e => e.classList.remove("isDisabled"));
+      
+      if (visible) {
+        buttonElems.forEach(e => e.classList.add("isDisabled"));
+        pageElem.scrollIntoView({behavior: "smooth"});
+      }
+    }
+}
+
+
 function getAge(dateString) {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -74,35 +98,8 @@ document.querySelectorAll("video").forEach(element => {
   }, false);
 
   let loadedPercentage = 0;
-  
-  /*let completed = false;
 
-  element.addEventListener('progress', function() {
-    if (completed) return;
-    if (element.buffered.length == 0) return;
-
-    currentPercentage -= loadedPercentage;
-    loadedPercentage = (element.buffered.end(0) / element.duration) * 100;
-    if (isNaN(loadedPercentage)) {
-      loadedPercentage = 0;
-      return;
-    }
-
-    currentPercentage += loadedPercentage;
-    updateLoading();
-    console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
-  });
-  element.addEventListener('loadeddata', function() {
-    console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
-    completed = true;
-    currentPercentage -= loadedPercentage;
-    loadedPercentage = 100;
-    currentPercentage += loadedPercentage;
-    current++;
-    updateLoading();
-  });*/
   let interval = setInterval(()=>{
-    //console.log("Ready: " + element.readyState + " ----- " + element.firstChild.getAttribute('src'));
     if(element.readyState >= 3){
       currentPercentage -= loadedPercentage;
       loadedPercentage = 100;
@@ -122,7 +119,6 @@ document.querySelectorAll("video").forEach(element => {
     }
     currentPercentage += loadedPercentage;
     updateLoading();
-    //console.log(loadedPercentage +"%   " + element.firstChild.getAttribute('src'));
 },300);
 });
 
@@ -138,11 +134,12 @@ function updateLoading() {
   stat.innerHTML = "Loading "+ perc;
 
   if (current == total) {
-    document.body.style.overflow = 'visible';
-    document.body.style.overflow = 'overlay';
-    ovrl.style.opacity = 0;
     setTimeout(function(){
+      document.body.style.overflow = 'visible';
+      document.body.style.overflow = 'overlay';
+      ovrl.style.opacity = 0;
       ovrl.style.display = "none";
+      goToPage(-1);
     }, 1200);
   }
 }
