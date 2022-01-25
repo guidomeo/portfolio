@@ -362,15 +362,15 @@
 
     <div class="page" id="page3"> <!-- ############################## PAGE 3 ################################### -->
         <div class="game_section">
-            <h3>Serializable dictionary</h3> <!----------------------------------------------- ROGUE WILD TACTICS ----------------------------------------------->
+            <h3>Serializable dictionary</h3> <!----------------------------------------------- Serializable dictionary ----------------------------------------------->
             <section>
                 <div class="game_grid_left">
 <div>
-Serializable dictionary implementation to show/edit a C# dictionary in Unity inspector.
+Serializable dictionary implementation to show/edit a C# dictionary in <b>Unity inspector</b>.
 <br /><br />
 <img src="img/code/SerializableDictionary.png" style="max-width: 100%;"/>
 <br /><br />
-A warning will show up when the dictionary cannot be desiarialized due to the fact that it contains repeating keys.
+An error will show up when the dictionary cannot be desiarialized due to the fact that it contains repeating keys.
 <br /><br />
 <img src="img/code/SerializableDictionaryError.png" style="max-width: 100%;"/>
 </div>
@@ -482,6 +482,67 @@ A warning will show up when the dictionary cannot be desiarialized due to the fa
 &nbsp;&nbsp;&nbsp;&nbsp;}
 }
 <span style="color:#9b9b9b;">#endif</span></pre>
+</div>
+</details>
+</div>
+                </div>
+            </section>
+            </div>
+
+                   <div class="game_section">
+            <h3>Mono Behaviour Extended</h3> <!----------------------------------------------- Mono Behaviour extension ----------------------------------------------->
+            <section>
+                <div class="game_grid_left">
+<div>
+MonoBehaviour extension to add an unlimited amount of Start events created using <b>C# reflection.</b><br /><br />
+A class that inherits from MonoBehaviourExt cannot use Awake or Start
+, but can implement an unlimited amount of methods called Start0, Start1, Start2, etc...<br />
+These methods will be called automatically at the Start of each instance of classes that inherits from MonoBehaviourExt following the numeric order: First all the Start0 methods, then all the Start1 methods, etc…
+</div>
+<div>
+<details>
+<summary>Show Code/Hide Code</summary>
+<div class="spoiler">
+<pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">using</span>&nbsp;System;
+<span style="color:#569cd6;">using</span>&nbsp;System<span style="color:#b4b4b4;">.</span>Collections<span style="color:#b4b4b4;">.</span>Generic;
+<span style="color:#569cd6;">using</span>&nbsp;System<span style="color:#b4b4b4;">.</span>Reflection;
+<span style="color:#569cd6;">using</span>&nbsp;UnityEngine;
+ 
+<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">abstract</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">MonoBehaviourExt</span>&nbsp;:&nbsp;MonoBehaviour
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">static</span>&nbsp;List&lt;List&lt;Action&gt;&gt;&nbsp;starts&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;List&lt;List&lt;Action&gt;&gt;();
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">static</span>&nbsp;MonoBehaviourExt&nbsp;instance;
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#569cd6;">Awake</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MethodInfo[]&nbsp;methodInfos&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;GetType()<span style="color:#b4b4b4;">.</span>GetMethods(BindingFlags<span style="color:#b4b4b4;">.</span>Public&nbsp;<span style="color:#b4b4b4;">|</span>&nbsp;BindingFlags<span style="color:#b4b4b4;">.</span>NonPublic&nbsp;<span style="color:#b4b4b4;">|</span>&nbsp;BindingFlags<span style="color:#b4b4b4;">.</span>Instance);
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">foreach</span>&nbsp;(MethodInfo&nbsp;methodInfo&nbsp;<span style="color:#569cd6;">in</span>&nbsp;methodInfos)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(<span style="color:#b4b4b4;">!</span>methodInfo<span style="color:#b4b4b4;">.</span>Name<span style="color:#b4b4b4;">.</span>StartsWith(<span style="color:#d69d85;">&quot;Start&quot;</span>))&nbsp;<span style="color:#569cd6;">continue</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">try</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">int</span>&nbsp;index&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;Int32<span style="color:#b4b4b4;">.</span>Parse(methodInfo<span style="color:#b4b4b4;">.</span>Name<span style="color:#b4b4b4;">.</span>Replace(<span style="color:#d69d85;">&quot;Start&quot;</span>,&nbsp;<span style="color:#d69d85;">&quot;&quot;</span>));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">for</span>&nbsp;(<span style="color:#569cd6;">int</span>&nbsp;i&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;starts<span style="color:#b4b4b4;">.</span>Count;&nbsp;i&nbsp;<span style="color:#b4b4b4;">&lt;=</span>&nbsp;index;&nbsp;i<span style="color:#b4b4b4;">++</span>)&nbsp;starts<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;List&lt;Action&gt;());
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action&nbsp;action&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;(Action)&nbsp;methodInfo<span style="color:#b4b4b4;">.</span>CreateDelegate(<span style="color:#569cd6;">typeof</span>(Action),&nbsp;<span style="color:#569cd6;">this</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;starts[index]<span style="color:#b4b4b4;">.</span>Add(action);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">catch</span>&nbsp;(FormatException)&nbsp;{&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instance&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">this</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;<span style="color:#569cd6;">Start</span>()
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(instance&nbsp;<span style="color:#b4b4b4;">!=</span>&nbsp;<span style="color:#569cd6;">this</span>)&nbsp;<span style="color:#569cd6;">return</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;List&lt;Action&gt;&gt;&nbsp;tmpStarts&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;List&lt;List&lt;Action&gt;&gt;(starts);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;starts<span style="color:#b4b4b4;">.</span>Clear();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">foreach</span>&nbsp;(List&lt;Action&gt;&nbsp;actions&nbsp;<span style="color:#569cd6;">in</span>&nbsp;tmpStarts)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">foreach</span>&nbsp;(Action&nbsp;action&nbsp;<span style="color:#569cd6;">in</span>&nbsp;actions)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;action<span style="color:#b4b4b4;">.</span>Invoke();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre>
 </div>
 </details>
 </div>
