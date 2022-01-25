@@ -23,6 +23,7 @@
     --h2: 6vh;
     --h3: 3em;
     --h3-min: 2em;
+    --sections-button: 2em;
 
     --littlefont: 0.8em;
 }
@@ -120,7 +121,6 @@ section {
     padding: 0vh 10% 8vh 10%;
     font-size: var(--normal);
     text-align: left;
-    color: var(--text);
     line-height: 1.5;
 
     text-shadow:
@@ -156,6 +156,7 @@ p {
 .black_section {
     background-color: var(--black);
     padding: 4vh 15% 4vh 15%;
+    margin-bottom: 3em;
 }
 
 .phonescreens3 { /* ////////////////////// PHONE SCREENS ////////////////////// */
@@ -194,11 +195,11 @@ p {
     gap: 8vh;
 }
     
-.game_grid_right div:nth-child(1){
+.game_grid_right > div:nth-child(1){
     order:2;
   }
  
-.game_grid_right div:nth-child(2){
+.game_grid_right > div:nth-child(2){
     order:1;
   }
 
@@ -214,17 +215,18 @@ p {
         grid-template-rows: auto auto;
     }
 
-    .game_grid_right div:nth-child(1){
+    .game_grid_right > div:nth-child(1){
         order:1;
       }
      
-    .game_grid_right div:nth-child(2){
+    .game_grid_right > div:nth-child(2){
         order:2;
       }
 }
 
 .figure_div {
     margin: 0 0 0 0;
+    text-align: center;
 }
 
 .about_grid {
@@ -314,6 +316,10 @@ input:active {
     position: relative;
     top: 0;
     left: 0;
+    right: 0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 100%;
     max-height: 100%;
     border: 0.2vh solid var(--border);
@@ -331,11 +337,12 @@ figure {
 
 body {
     font-family: Muli;
+    color: var(--text);
     background-color: var(--black);
     overflow: hidden;
 }
 
-.page {
+.full_page {
     position: absolute;
     text-align: center;
     width: 100%;
@@ -343,11 +350,19 @@ body {
     display: block;
 }
 
+.page {
+    padding-top: 1em;
+}
+
 a {
-    /*text-decoration: none;*/
     color: var(--button);
     transition: 0.1s;
     transition-timing-function: ease-out;
+}
+
+.isDisabled {
+    color: var(--text);
+    text-decoration: inherit;
 }
 
 a:hover {
@@ -355,6 +370,7 @@ a:hover {
 }
 
 figcaption {
+    position: relative;
     text-align: center;
     margin-top: 1em;
 }
@@ -362,6 +378,7 @@ figcaption {
 footer {
     color: var(--text);
 
+    margin-top: 3em;
     margin-bottom: 3vh;
     height: 8vh;
 
@@ -386,6 +403,60 @@ footer {
     height: 100vh;
     background: #141414;
     filter: brightness(2);
+}
+
+details summary { 
+    cursor: pointer;
+}
+
+details summary > * {
+    display: inline;
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;
+
+    padding: 13px;
+}
+
+summary {
+    border: 4px solid transparent;
+    outline: none;
+    padding: 1rem;
+    display: block;
+    background: #444;
+    color: white;
+    padding-left: 2.2rem;
+    position: relative;
+    cursor: pointer;
+}
+details {
+    box-sizing: border-box;
+    margin-top: 5px;
+    background: white;
+}
+details summary::-webkit-details-marker {
+    display:none;
+}
+details[open] > summary:before {
+    transform: rotate(90deg);
+}
+summary:before {
+    content: '';
+    border-width: .4rem;
+    border-style: solid;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    top: 1.3rem;
+    left: 1rem;
+    transform: rotate(0);
+    transform-origin: .2rem 50%;
+    transition: .25s transform ease;
 }
 
 .scene path:first-child {
@@ -489,15 +560,16 @@ footer {
 
 .inner_image {
     position: relative;
-    width:100%;
+    max-height: 40vh;
 }
 
-@media only screen and (max-width: 736px) {
-    .inner_image {
-        max-height: 50vh;
-        width: auto;
-    }
+.menu_container {
+    font-size: var(--sections-button);
+    padding-right: 0.2em;
+    padding-left: 0.2em;
 }
+
+
 
 #overlay{
     position:fixed;
