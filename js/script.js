@@ -1,5 +1,5 @@
-
 function goToPage(id) {
+    document.getElementById("bottom_menu").style.display = "none";
 
     let numberOfPages = 3;
 
@@ -15,6 +15,7 @@ function goToPage(id) {
       buttonElems.forEach(e => e.classList.remove("isDisabled"));
       
       if (visible) {
+        document.getElementById("bottom_menu").style.display = "block";
         buttonElems.forEach(e => e.classList.add("isDisabled"));
         pageElem.scrollIntoView({behavior: "smooth"});
       }
@@ -65,6 +66,12 @@ fitText(document.querySelector("h2"), 1.2);
 document.querySelectorAll("h3").forEach(element => {
     fitText(element, 1.4);
 });
+document.querySelectorAll(".menu_container").forEach(element => {
+  fitText(element, 2.5);
+});
+/*document.querySelectorAll("pre").forEach(element => {
+  fitText(element, 6);
+});*/
 
 let options = {
   root: null,

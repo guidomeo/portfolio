@@ -413,6 +413,52 @@ details summary > * {
     display: inline;
 }
 
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;
+
+    padding: 13px;
+}
+
+summary {
+    border: 4px solid transparent;
+    outline: none;
+    padding: 1rem;
+    display: block;
+    background: #444;
+    color: white;
+    padding-left: 2.2rem;
+    position: relative;
+    cursor: pointer;
+}
+details {
+    box-sizing: border-box;
+    margin-top: 5px;
+    background: white;
+}
+details summary::-webkit-details-marker {
+    display:none;
+}
+details[open] > summary:before {
+    transform: rotate(90deg);
+}
+summary:before {
+    content: '';
+    border-width: .4rem;
+    border-style: solid;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    top: 1.3rem;
+    left: 1rem;
+    transform: rotate(0);
+    transform-origin: .2rem 50%;
+    transition: .25s transform ease;
+}
+
 .scene path:first-child {
 	fill: #1a1a1a;
 }
@@ -519,7 +565,11 @@ details summary > * {
 
 .menu_container {
     font-size: var(--sections-button);
+    padding-right: 0.2em;
+    padding-left: 0.2em;
 }
+
+
 
 #overlay{
     position:fixed;

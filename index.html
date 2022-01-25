@@ -362,34 +362,57 @@
 
     <div class="page" id="page3"> <!-- ############################## PAGE 3 ################################### -->
         <div class="game_section">
-            <h3>Rogue Wild Tactics</h3> <!----------------------------------------------- ROGUE WILD TACTICS ----------------------------------------------->
+            <h3>Serializable dictionary</h3> <!----------------------------------------------- ROGUE WILD TACTICS ----------------------------------------------->
             <section>
-                <div class="game_grid_right">
+                <div class="game_grid_left">
+<div>
+Serializable dictionary implementation to show/edit a C# dictionary in Unity inspector.
+<br /><br />
+<img src="img/code/SerializableDictionary.png" style="max-width: 100%;"/>
+<br /><br />
+A warning will show up when the dictionary cannot be desiarialized due to the fact that it contains repeating keys.
+<br /><br />
+<img src="img/code/SerializableDictionaryError.png" style="max-width: 100%;"/>
+</div>
 <div>
 <details>
-<summary>Show Code</summary>
-<pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">using</span>&nbsp;System<span style="color:#b4b4b4;">.</span>Collections;
-<span style="color:#569cd6;">using</span>&nbsp;System<span style="color:#b4b4b4;">.</span>Collections<span style="color:#b4b4b4;">.</span>Generic;
+<summary>Show Code/Hide Code</summary>
+<div class="spoiler">
+<pre style="font-family:Consolas;font-size:13px;color:gainsboro;background:#1e1e1e;"><span style="color:#569cd6;">using</span>&nbsp;System<span style="color:#b4b4b4;">.</span>Collections<span style="color:#b4b4b4;">.</span>Generic;
 <span style="color:#569cd6;">using</span>&nbsp;UnityEngine;
 <span style="color:#9b9b9b;">#if</span>&nbsp;UNITY_EDITOR
 <span style="color:#569cd6;">using</span>&nbsp;UnityEditor;
 <span style="color:#9b9b9b;">#endif</span>
  
 [System<span style="color:#b4b4b4;">.</span>Serializable]
-<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SerializableDictionary</span>&lt;<span style="color:#b8d7a3;">TKey</span>,&nbsp;<span style="color:#b8d7a3;">TValue</span>&gt;&nbsp;:&nbsp;Dictionary&lt;TKey,&nbsp;TValue&gt;,&nbsp;ISerializationCallbackReceiver
+<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">SerializableDictionary</span>&lt;<span style="color:#b8d7a3;">TKey</span>,&nbsp;<span style="color:#b8d7a3;">TValue</span>&gt;&nbsp;:&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&lt;TKey,&nbsp;TValue&gt;,&nbsp;ISerializationCallbackReceiver
 {
-&nbsp;&nbsp;&nbsp;&nbsp;[SerializeField]&nbsp;<span style="color:#569cd6;">private</span>&nbsp;List&lt;Pair&lt;TKey,&nbsp;TValue&gt;&gt;&nbsp;list&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;List&lt;Pair&lt;TKey,&nbsp;TValue&gt;&gt;();
+&nbsp;&nbsp;&nbsp;&nbsp;[System<span style="color:#b4b4b4;">.</span>Serializable]
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">struct</span>&nbsp;<span style="color:#4ec9b0;">Pair</span>&lt;<span style="color:#b8d7a3;">T1</span>,&nbsp;<span style="color:#b8d7a3;">T2</span>&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;T1&nbsp;key;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;T2&nbsp;value;
  
-&nbsp;&nbsp;&nbsp;&nbsp;[SerializeField]&nbsp;<span style="color:#569cd6;">private</span>&nbsp;<span style="color:#569cd6;">bool</span>&nbsp;_isValid&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">true</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;Pair(T1&nbsp;key,&nbsp;T2&nbsp;value)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>key&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;key;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">this</span><span style="color:#b4b4b4;">.</span>value&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;value;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;[SerializeField]&nbsp;List&lt;Pair&lt;TKey,&nbsp;TValue&gt;&gt;&nbsp;_list&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;List&lt;Pair&lt;TKey,&nbsp;TValue&gt;&gt;();
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;[SerializeField]&nbsp;<span style="color:#569cd6;">bool</span>&nbsp;_isValid&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">true</span>;
  
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#57a64a;">//&nbsp;save&nbsp;the&nbsp;dictionary&nbsp;to&nbsp;lists</span>
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;OnBeforeSerialize()
 &nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(<span style="color:#b4b4b4;">!</span>_isValid)&nbsp;<span style="color:#569cd6;">return</span>;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list<span style="color:#b4b4b4;">.</span>Clear();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_list<span style="color:#b4b4b4;">.</span>Clear();
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">foreach</span>&nbsp;(KeyValuePair&lt;TKey,&nbsp;TValue&gt;&nbsp;pair&nbsp;<span style="color:#569cd6;">in</span>&nbsp;<span style="color:#569cd6;">this</span>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;Pair&lt;TKey,&nbsp;TValue&gt;(pair<span style="color:#b4b4b4;">.</span>Key,&nbsp;pair<span style="color:#b4b4b4;">.</span>Value));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_list<span style="color:#b4b4b4;">.</span>Add(<span style="color:#569cd6;">new</span>&nbsp;Pair&lt;TKey,&nbsp;TValue&gt;(pair<span style="color:#b4b4b4;">.</span>Key,&nbsp;pair<span style="color:#b4b4b4;">.</span>Value));
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;}
  
@@ -398,16 +421,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_isValid&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">true</span>;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear();
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">for</span>&nbsp;(<span style="color:#569cd6;">int</span>&nbsp;i&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#b5cea8;">0</span>;&nbsp;i&nbsp;<span style="color:#b4b4b4;">&lt;</span>&nbsp;list<span style="color:#b4b4b4;">.</span>Count;&nbsp;i<span style="color:#b4b4b4;">++</span>)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">for</span>&nbsp;(<span style="color:#569cd6;">int</span>&nbsp;i&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#b5cea8;">0</span>;&nbsp;i&nbsp;<span style="color:#b4b4b4;">&lt;</span>&nbsp;_list<span style="color:#b4b4b4;">.</span>Count;&nbsp;i<span style="color:#b4b4b4;">++</span>)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">try</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(list[i]<span style="color:#b4b4b4;">.</span>first,&nbsp;list[i]<span style="color:#b4b4b4;">.</span>second);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span style="color:#569cd6;">catch</span>(System<span style="color:#b4b4b4;">.</span>ArgumentException)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(ContainsKey(_list[i]<span style="color:#b4b4b4;">.</span>key))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_isValid&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">false</span>;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(_list[i]<span style="color:#b4b4b4;">.</span>key,&nbsp;_list[i]<span style="color:#b4b4b4;">.</span>value);
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;}
 }
@@ -419,33 +440,65 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;OnGUI(Rect&nbsp;position,&nbsp;SerializedProperty&nbsp;property,&nbsp;GUIContent&nbsp;label)
 &nbsp;&nbsp;&nbsp;&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>BeginProperty(position,&nbsp;label,&nbsp;property);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>PropertyField(position,&nbsp;property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;list&quot;</span>),&nbsp;label,&nbsp;<span style="color:#569cd6;">true</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(<span style="color:#b4b4b4;">!</span>property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;isValid&quot;</span>)<span style="color:#b4b4b4;">.</span>boolValue)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">bool</span>&nbsp;valid&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;_isValid&quot;</span>)<span style="color:#b4b4b4;">.</span>boolValue;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(<span style="color:#b4b4b4;">!</span>valid)&nbsp;GUI<span style="color:#b4b4b4;">.</span>color&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;Color<span style="color:#b4b4b4;">.</span>red;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>PropertyField(position,&nbsp;property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;_list&quot;</span>),&nbsp;label,&nbsp;<span style="color:#569cd6;">true</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">if</span>&nbsp;(<span style="color:#b4b4b4;">!</span>valid)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position<span style="color:#b4b4b4;">.</span>y&nbsp;<span style="color:#b4b4b4;">+=</span>&nbsp;position<span style="color:#b4b4b4;">.</span>height&nbsp;<span style="color:#b4b4b4;">-</span>&nbsp;EditorGUIUtility<span style="color:#b4b4b4;">.</span>singleLineHeight;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position<span style="color:#b4b4b4;">.</span>height&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;EditorGUIUtility<span style="color:#b4b4b4;">.</span>singleLineHeight;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position<span style="color:#b4b4b4;">.</span>width&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;position<span style="color:#b4b4b4;">.</span>width&nbsp;<span style="color:#b4b4b4;">-</span>&nbsp;EditorGUIUtility<span style="color:#b4b4b4;">.</span>labelWidth;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position<span style="color:#b4b4b4;">.</span>xMin&nbsp;<span style="color:#b4b4b4;">+=</span>&nbsp;EditorGUIUtility<span style="color:#b4b4b4;">.</span>labelWidth;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>HelpBox(position,&nbsp;<span style="color:#d69d85;">&quot;Repeating&nbsp;Keys&quot;</span>,&nbsp;MessageType<span style="color:#b4b4b4;">.</span>Error);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GUI<span style="color:#b4b4b4;">.</span>color&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;Color<span style="color:#b4b4b4;">.</span>white;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>EndProperty();
 &nbsp;&nbsp;&nbsp;&nbsp;}
  
 &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">float</span>&nbsp;GetPropertyHeight(SerializedProperty&nbsp;property,&nbsp;GUIContent&nbsp;label)
 &nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>GetPropertyHeight(property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;list&quot;</span>));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>GetPropertyHeight(property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;_list&quot;</span>));
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+ 
+[CustomPropertyDrawer(<span style="color:#569cd6;">typeof</span>(SerializableDictionary&lt;,&gt;<span style="color:#b4b4b4;">.</span>Pair&lt;,&gt;))]
+<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">class</span>&nbsp;<span style="color:#4ec9b0;">PairDrawer</span>&nbsp;:&nbsp;PropertyDrawer
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">void</span>&nbsp;OnGUI(Rect&nbsp;position,&nbsp;SerializedProperty&nbsp;property,&nbsp;GUIContent&nbsp;label)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>BeginProperty(position,&nbsp;label,&nbsp;property);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUIUtility<span style="color:#b4b4b4;">.</span>labelWidth&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#b5cea8;">50</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rect&nbsp;rect&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;<span style="color:#569cd6;">new</span>&nbsp;Rect(position<span style="color:#b4b4b4;">.</span>x,&nbsp;position<span style="color:#b4b4b4;">.</span>y,&nbsp;position<span style="color:#b4b4b4;">.</span>width&nbsp;<span style="color:#b4b4b4;">/</span>&nbsp;<span style="color:#b5cea8;">2</span>&nbsp;<span style="color:#b4b4b4;">-</span>&nbsp;<span style="color:#b5cea8;">20</span>,&nbsp;position<span style="color:#b4b4b4;">.</span>height);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>PropertyField(rect,&nbsp;property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;key&quot;</span>),&nbsp;<span style="color:#569cd6;">true</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rect<span style="color:#b4b4b4;">.</span>x&nbsp;<span style="color:#b4b4b4;">+=</span>&nbsp;position<span style="color:#b4b4b4;">.</span>width&nbsp;<span style="color:#b4b4b4;">/</span>&nbsp;<span style="color:#b5cea8;">2</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>PropertyField(rect,&nbsp;property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;value&quot;</span>),&nbsp;<span style="color:#569cd6;">true</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>EndProperty();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">public</span>&nbsp;<span style="color:#569cd6;">override</span>&nbsp;<span style="color:#569cd6;">float</span>&nbsp;GetPropertyHeight(SerializedProperty&nbsp;property,&nbsp;GUIContent&nbsp;label)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">float</span>&nbsp;firstHeight&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>GetPropertyHeight(property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;key&quot;</span>));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">float</span>&nbsp;secondHeight&nbsp;<span style="color:#b4b4b4;">=</span>&nbsp;EditorGUI<span style="color:#b4b4b4;">.</span>GetPropertyHeight(property<span style="color:#b4b4b4;">.</span>FindPropertyRelative(<span style="color:#d69d85;">&quot;value&quot;</span>));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">return</span>&nbsp;Mathf<span style="color:#b4b4b4;">.</span>Max(firstHeight,&nbsp;secondHeight);
 &nbsp;&nbsp;&nbsp;&nbsp;}
 }
 <span style="color:#9b9b9b;">#endif</span></pre>
-</details>
 </div>
-<div>
-testo di prova!!!
+</details>
 </div>
                 </div>
             </section>
             </div>
     </div> <!-- ############################## PAGE 3 ################################### -->
-
+    
+    <div id="bottom_menu">
+        <div class="menu_container">
+        <a class="button1" href="javascript:void(0);" onclick="goToPage(1)">Personal Projects</a>
+        | 
+        <a class="button2" href="javascript:void(0);" onclick="goToPage(2)">Team Projects</a>
+        | 
+        <a class="button3" href="javascript:void(0);" onclick="goToPage(3)">Unity Snippets</a>
+        </div>
+    </div>
 
     <footer>Guido Meo<br/>2022</footer>
 </div>
@@ -460,6 +513,7 @@ testo di prova!!!
 <script src="js/slideshow.js"></script>
 <script src="js/fittext.js"></script>
 <script src="js/script.js"></script>
+<script src="js/spoiler.js"></script>
 
 </body>
 
