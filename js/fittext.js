@@ -37,8 +37,9 @@
         var fontSize = el.style.fontSize;
   
         var resizer = function () {
-            if (el.clientWidth < 736) {
-                el.style.fontSize = Math.max(Math.min(el.clientWidth / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)) + 'px';
+            //if (el.offsetParent === null) return;
+            if (document.body.clientWidth < 736) {
+                el.style.fontSize = Math.max(Math.min(document.body.clientWidth / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)) + 'px';
             }else{
                 el.style.fontSize = fontSize;
             }
