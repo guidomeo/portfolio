@@ -64,7 +64,6 @@ new Slideshow('roundpong_slideshow', 2500);
 fitText(document.querySelector("h1"), 0.8);
 fitText(document.querySelector("h2"), 1.2);
 fitText(document.querySelectorAll("h3"), 1.4);
-//fitText(document.querySelectorAll(".menu_container"), 2.5);
 
 let options = {
   root: null,

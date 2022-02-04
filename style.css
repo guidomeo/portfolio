@@ -24,6 +24,7 @@
     --h3: 3em;
     --h3-min: 2em;
     --sections-button: 2em;
+    --sections-button-min: 1.5em;
 
     --littlefont: 0.8em;
 }
@@ -573,11 +574,12 @@ summary:before {
 
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 2vh;
+    gap: 4vh;
 }
 
 @media only screen and (max-width: 1280px) {
     .menu_container {
+        font-size: var(--sections-button-min);
         padding-right: 1em;
         padding-left: 1em;
     }
@@ -585,6 +587,7 @@ summary:before {
 
 @media only screen and (max-width: 736px) {
     .menu_container {
+        font-size: var(--sections-button);
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto auto;
     }
