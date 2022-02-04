@@ -565,11 +565,27 @@ summary:before {
 
 .menu_container {
     font-size: var(--sections-button);
-    padding-right: 0.2em;
-    padding-left: 0.2em;
+    padding-right: 5em;
+    padding-left: 5em;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 2vh;
 }
 
+@media only screen and (max-width: 1280px) {
+    .menu_container {
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+}
 
+@media only screen and (max-width: 736px) {
+    .menu_container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+}
 
 #overlay{
     position:fixed;
