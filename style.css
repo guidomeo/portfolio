@@ -569,8 +569,8 @@ summary:before {
 
 .menu_container {
     font-size: var(--sections-button);
-    padding-right: 5em;
-    padding-left: 5em;
+    padding-right: 7em;
+    padding-left: 7em;
 
     display: grid;
     grid-template-columns: auto auto auto auto;
