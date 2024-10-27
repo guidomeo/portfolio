@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cecina</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+        }
+        input[type="number"] {
+            width: 90%;
+            max-width: 400px;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff;
+            text-align: left;
+            width: 90%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+<h1>Cecina</h1>
+<label for="diameter">Diametro della teglia in cm:</label>
+<input type="number" id="diameter" placeholder="Diametro in cm" min="0" step="1" oninput="calculateCecina()">
+<div id="result" class="result"></div>
+
+<script>
+    function area(diameter)
+    {
+        const radius = diameter / 2;
+        return Math.PI * radius * radius;
+    }
+    function round(number)
+    {
+        number = Math.round(number);
+        if (number >= 200)
+        {
+            return Math.round(number/10)*10;
+        }
+        if (number >= 10)
+        {
+            return Math.round(number/5)*5;
+        }
+        return number;
+    }
+    function calculateCecina()
+    {
+        const diameter = parseFloat(document.getElementById('diameter').value);
+        if (isNaN(diameter) || diameter <= 0) {
+            document.getElementById('result').textContent = "Inserisci diametro valido";
+            return;
+        }
+        
+        const multiplier = area(diameter) / area(39);
+        const farina = round(180 * multiplier);
+        const acqua = round(600 * multiplier);
+        const olio = round(40 * multiplier);
+        const sale = round(8 * multiplier);
+        
+        
+        document.getElementById('result').innerHTML = `
+        <table style="width:100%">
+          <tr>
+            <th>${farina} g</th>
+            <th>Farina di ceci</th>
+          </tr>
+          <tr>
+            <th>${acqua} ml</th>
+            <th>Acqua</th>
+          </tr>
+          <tr>
+            <th>${olio} ml</th>
+            <th>Olio + Olio in teglia</th>
+          </tr>
+          <tr>
+            <th>${sale} g</th>
+            <th>Sale</th>
+          </tr>
+        </table>
+        `;
+    }
+</script>
+</body>
+</html>
