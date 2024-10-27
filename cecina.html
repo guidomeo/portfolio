@@ -21,14 +21,28 @@
             font-size: 1.8em;
             margin-bottom: 1em;
         }
-        input[type="number"] {
-            width: 90%;
+        input[type="number"],
+        select {
+            width: 80%;
             max-width: 400px;
             padding: 12px;
             margin-top: 10px;
             font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 4px;
+            -webkit-appearance: none; /* Removes default dropdown icon on some browsers */
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #fff; /* Ensures background matches */
+        }
+
+        /* Optional styling for a custom dropdown icon */
+        select {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"><path d="M7 10l5 5 5-5H7z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px; /* Adds space for the custom icon */
         }
         .result {
             margin-top: 20px;
@@ -43,8 +57,28 @@
 </head>
 <body>
 <h1>Cecina</h1>
-<label for="diameter">Diametro della teglia in cm:</label>
-<input type="number" id="diameter" placeholder="Diametro in cm" min="0" step="1" oninput="calculateCecina()">
+<label for="options">Tipo di teglia</label>
+<select id="options" onchange="showDiv()">
+    <option value="option1">Tonda</option>
+    <option value="option2">Rettangolare</option>
+</select>
+
+<div id="div1" class="content-div" style="display: none;">
+    </br>
+    <label for="diameter">Diametro in cm</label>
+    <input type="number" id="diameter" placeholder="Diametro in cm" min="0" step="1" oninput="calculateCecina()">
+</div>
+
+<div id="div2" class="content-div" style="display: none;">
+    </br>
+    <label for="diameter">Altezza in cm</label>
+    <input type="number" id="dim1" placeholder="Altezza in cm" min="0" step="1" oninput="calculateCecina()">
+    </br>
+    </br>
+    <label for="diameter">Larghezza in cm</label>
+    <input type="number" id="dim2" placeholder="Larghezza in cm" min="0" step="1" oninput="calculateCecina()">
+</div>
+
 <div id="result" class="result"></div>
 
 <script>
@@ -68,18 +102,36 @@
     }
     function calculateCecina()
     {
-        const diameter = parseFloat(document.getElementById('diameter').value);
-        if (isNaN(diameter) || diameter <= 0) {
-            document.getElementById('result').textContent = "Inserisci diametro valido";
-            return;
+        let curArea = 0;
+        
+        const selectedOption = document.getElementById("options").value;
+
+        if (selectedOption === "option1") {
+            const diameter = parseFloat(document.getElementById('diameter').value);
+            if (isNaN(diameter) || diameter <= 0) {
+                document.getElementById('result').innerHTML = "";
+                return;
+            }
+            curArea = area(diameter);
+        } else if (selectedOption === "option2") {
+            const dim1 = parseFloat(document.getElementById('dim1').value);
+            if (isNaN(dim1) || dim1 <= 0) {
+                document.getElementById('result').innerHTML = "";
+                return;
+            }
+            const dim2 = parseFloat(document.getElementById('dim2').value);
+            if (isNaN(dim2) || dim2 <= 0) {
+                document.getElementById('result').innerHTML = "";
+                return;
+            }
+            curArea = dim1 * dim2;
         }
         
-        const multiplier = area(diameter) / area(39);
+        const multiplier = curArea / area(39);
         const farina = round(180 * multiplier);
         const acqua = round(600 * multiplier);
         const olio = round(40 * multiplier);
         const sale = round(8 * multiplier);
-        
         
         document.getElementById('result').innerHTML = `
         <table style="width:100%">
@@ -102,6 +154,30 @@
         </table>
         `;
     }
+    
+    function reset()
+    {
+        document.getElementById('diameter').value = "";
+        document.getElementById('dim1').value = "";
+        document.getElementById('dim2').value = "";
+        calculateCecina();
+    }
+
+    function showDiv() {
+        
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("div2").style.display = "none";
+
+        const selectedOption = document.getElementById("options").value;
+
+        if (selectedOption === "option1") {
+            document.getElementById("div1").style.display = "block";
+        } else if (selectedOption === "option2") {
+            document.getElementById("div2").style.display = "block";
+        }
+        reset();
+    }
+    showDiv();
 </script>
 </body>
 </html>
